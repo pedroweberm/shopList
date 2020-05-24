@@ -4,7 +4,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import * as Screens from '~/screens';
 
-import {CustomDrawerContent} from './styles';
+import {CustomDrawerContent, fadeIn, slideFromRight} from './styles';
 
 const ModalRootStack = createStackNavigator();
 
@@ -21,8 +21,22 @@ const ModalRootScreen = () => (
 const AuthStack = createStackNavigator();
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator headerMode="none">
-    <AuthStack.Screen name={'Landing'} component={Screens.AuthLanding} />
+  <AuthStack.Navigator headerMode="none" mode="modal">
+    <AuthStack.Screen
+      name={'Background'}
+      component={Screens.AuthBackground}
+      options={{...fadeIn()}}
+    />
+    <AuthStack.Screen
+      name={'Landing'}
+      component={Screens.AuthLanding}
+      options={{...slideFromRight()}}
+    />
+    <AuthStack.Screen
+      name={'SignIn'}
+      component={Screens.AuthSignIn}
+      options={{...slideFromRight()}}
+    />
   </AuthStack.Navigator>
 );
 

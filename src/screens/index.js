@@ -6,4 +6,6 @@ export {default as Sessions} from './Sessions/SessionsScreen';
 export {default as Settings} from './Settings/SettingsScreen';
 export {default as Stats} from './Stats/StatsScreen';
 
+export {default as AuthBackground} from './Auth/Background/Background';
 export {default as AuthLanding} from './Auth/Landing/Landing';
+export {default as AuthSignIn} from './Auth/SignIn/SignIn';
