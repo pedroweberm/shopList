@@ -4,17 +4,35 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import * as Screens from '~/screens';
 
+import {CustomDrawerContent} from './styles';
+
 const ModalRootStack = createStackNavigator();
-const RootDrawer = createDrawerNavigator();
 
 const ModalRootScreen = () => (
-  <ModalRootStack.Navigator mode="modal">
+  <ModalRootStack.Navigator
+    mode="modal"
+    initialRouteName="AuthStack"
+    headerMode="none">
+    <ModalRootStack.Screen name={'AuthStack'} component={AuthStackScreen} />
     <ModalRootStack.Screen name="RootDrawer" component={RootDrawerScreen} />
   </ModalRootStack.Navigator>
 );
 
+const AuthStack = createStackNavigator();
+
+const AuthStackScreen = () => (
+  <AuthStack.Navigator headerMode="none">
+    <AuthStack.Screen name={'Landing'} component={Screens.AuthLanding} />
+  </AuthStack.Navigator>
+);
+
+const RootDrawer = createDrawerNavigator();
+
 const RootDrawerScreen = () => (
-  <RootDrawer.Navigator>
+  <RootDrawer.Navigator
+    initialRouteName="Home"
+    overlayColor={'white'}
+    drawerContent={CustomDrawerContent}>
     <RootDrawer.Screen name={'Home'} component={Screens.Home} />
     <RootDrawer.Screen name={'Groups'} component={Screens.Groups} />
     <RootDrawer.Screen name={'Sessions'} component={Screens.Sessions} />
