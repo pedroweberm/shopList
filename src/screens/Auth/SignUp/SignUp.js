@@ -23,16 +23,19 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
 
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER_MUTATION);
+  const [createUser, {
+    data, loading, error, called,
+  }] = useMutation(CREATE_USER_MUTATION);
 
   const loadingScreen = useLoadingScreen();
 
   useEffect(() => {
-    if (!loading) loadingScreen.close();
-  }, [loading]);
+    if (called && loading) loadingScreen.open();
+    else if (called && !loading) loadingScreen.close();
+    else loadingScreen.close();
+  }, [loading, data, error, called]);
 
   const onSubmit = () => {
-    loadingScreen.open();
     createUser({ variables: { phone, name, password } });
   };
 
