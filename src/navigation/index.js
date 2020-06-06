@@ -4,7 +4,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as Screens from '~/screens';
 
-import { CustomDrawerContent, fadeIn, slideFromRight } from './styles';
+import {
+  CustomDrawerContent, fadeIn, slideFromRight, fadeFromBottom,
+} from './styles';
 
 const ModalRootStack = createStackNavigator();
 
@@ -14,6 +16,11 @@ const ModalRootScreen = () => (
     initialRouteName="AuthStack"
     headerMode="none"
   >
+    <ModalRootStack.Screen
+      name="Loading"
+      component={Screens.Loading}
+      options={{ ...fadeFromBottom({}, { backgroundColor: '#ffffff' }), gestureEnabled: false }}
+    />
     <ModalRootStack.Screen
       name="AuthStack"
       component={AuthStackScreen}

@@ -14,9 +14,11 @@ const shadowStyle = {
   elevation: 7,
 };
 
-const JumboButton = ({ label, onPress, highlight }) => {
+const JumboButton = ({
+  label, onPress, highlight, disabled,
+}) => {
   return (
-    <MainContainer onPress={onPress} highlight={highlight} style={shadowStyle}>
+    <MainContainer onPress={onPress} highlight={highlight} style={shadowStyle} disabled={disabled}>
       <Label highlight={highlight}>
         {label}
       </Label>

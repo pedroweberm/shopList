@@ -1,12 +1,12 @@
-import React, {useRef, useEffect} from 'react';
-import {StatusBar, Animated, Easing} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
+import React, { useRef, useEffect } from 'react';
+import { StatusBar, Animated, Easing } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
-import {BackgroundFruits} from '~/assets/icons';
+import { BackgroundFruits } from '~/assets/icons';
 
-import {MainContainer, BackgroundContainer, AnimatedContainer} from './styles';
+import { MainContainer, BackgroundContainer, AnimatedContainer } from './styles';
 
-const Background = ({navigation}) => {
+const Background = ({ navigation }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const startAnimation = () => {
@@ -39,9 +39,9 @@ const Background = ({navigation}) => {
   return (
     <MainContainer>
       <StatusBar
-        backgroundColor={'transparent'}
+        backgroundColor="transparent"
         translucent
-        barStyle={'light-content'}
+        barStyle="light-content"
       />
       <BackgroundContainer>
         <AnimatedContainer
@@ -66,8 +66,9 @@ const Background = ({navigation}) => {
                 }),
               },
             ],
-          }}>
-          <BackgroundFruits width={'100%'} height={'100%'} />
+          }}
+        >
+          <BackgroundFruits width="100%" />
         </AnimatedContainer>
       </BackgroundContainer>
     </MainContainer>

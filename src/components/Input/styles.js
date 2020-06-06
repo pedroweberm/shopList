@@ -8,10 +8,10 @@ export const MainInput = styled.TextInput`
   align-items: center;
   justify-content: center;
   border-width: ${pixel(1)}px;
-  border-color: #adadad;
+  border-color: ${({ theme }) => theme?.colors?.lightGray};
   background: ${({ theme }) => theme?.colors?.white};
   font-family: ${({ theme }) => theme?.fonts?.primary?.medium};
   font-size: ${normalize(16)}px;
-  color: ${({ theme }) => theme?.colors?.secondary};
+  color: ${({ theme }) => theme?.colors?.darkGray};
   padding: ${normalize(10)}px ${normalize(10)}px;
 `;

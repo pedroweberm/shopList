@@ -13,3 +13,9 @@ export const H2Bold = styled.Text`
   font-size: ${normalize(25)}px;
   color: ${({ theme }) => theme?.colors?.primary};
 `;
+
+export const H3Regular = styled.Text`
+  font-family: ${({ theme }) => theme?.fonts?.primary?.regular};
+  font-size: ${normalize(18)}px;
+  color: ${({ theme }) => theme?.colors?.darkGray};
+`;

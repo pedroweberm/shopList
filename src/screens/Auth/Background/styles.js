@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import {Animated} from 'react-native';
+import { Animated } from 'react-native';
 
 export const MainContainer = styled.View`
   flex: 1;
@@ -10,12 +10,13 @@ export const MainContainer = styled.View`
 
 export const BackgroundContainer = styled.View`
   position: absolute;
-  top: -5%;
+  top: -10%;
+  padding-top: 10%;
   left: 0;
   right: 0;
   height: 60%;
   border-radius: 50px;
-  background: #665cbf;
+  background: ${({ theme }) => theme?.colors?.primary};
   overflow: hidden;
 `;
 

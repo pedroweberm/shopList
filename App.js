@@ -1,12 +1,23 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {Platform, UIManager, StatusBar} from 'react-native';
-import {ThemeProvider} from 'styled-components';
-// import {Provider} from 'react-redux';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { Platform, UIManager, StatusBar } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import {
+  ApolloClient, HttpLink, InMemoryCache, gql, ApolloProvider,
+} from '@apollo/client';
+
 import Navigation from '~/navigation';
-// import store from './src/store';
 
 import theme from './theme';
+
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'http://192.168.0.45:3000/graphql',
+  }),
+});
+
 
 const App = () => {
   if (Platform.OS === 'android') {
@@ -16,18 +27,18 @@ const App = () => {
   }
 
   return (
-    // <Provider store={store}>
-    <NavigationContainer>
-      <StatusBar
-        backgroundColor={'white'}
-        translucent
-        barStyle={'dark-content'}
-      />
-      <ThemeProvider theme={theme}>
-        <Navigation />
-      </ThemeProvider>
-    </NavigationContainer>
-    // </Provider>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <StatusBar
+          backgroundColor="white"
+          translucent
+          barStyle="dark-content"
+        />
+        <ThemeProvider theme={theme}>
+          <Navigation />
+        </ThemeProvider>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 };
 
