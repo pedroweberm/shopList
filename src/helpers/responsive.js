@@ -15,6 +15,8 @@ const normalize = (size) => {
   return Math.round(PixelRatio.roundToNearestPixel(newSize));
 };
 
+const pixel = (size) => PixelRatio.roundToNearestPixel(size);
+
 const widthPercentage = (value) => {
   const percent = (width * parseFloat(value)) / 100;
 
@@ -34,4 +36,5 @@ export {
   normalize,
   widthPercentage,
   heightPercentage,
+  pixel,
 };

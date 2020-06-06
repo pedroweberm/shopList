@@ -1,4 +1,5 @@
 import React from 'react';
+import {Dimensions} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -64,6 +65,8 @@ export const fadeIn = (cardStyle, overlayStyle = {}) => {
   };
 };
 
+const {width} = Dimensions.get('screen');
+
 export const slideFromRight = (cardStyle, overlayStyle = {}) => {
   return {
     animationEnabled: true,
@@ -74,7 +77,7 @@ export const slideFromRight = (cardStyle, overlayStyle = {}) => {
       } = input;
       const interpolatedPosition = progress.interpolate({
         inputRange: [0, 1],
-        outputRange: [200, 0],
+        outputRange: [width, 0],
       });
       return {
         cardStyle: {

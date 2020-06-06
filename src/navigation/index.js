@@ -1,10 +1,10 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as Screens from '~/screens';
 
-import {CustomDrawerContent, fadeIn, slideFromRight} from './styles';
+import { CustomDrawerContent, fadeIn, slideFromRight } from './styles';
 
 const ModalRootStack = createStackNavigator();
 
@@ -12,8 +12,13 @@ const ModalRootScreen = () => (
   <ModalRootStack.Navigator
     mode="modal"
     initialRouteName="AuthStack"
-    headerMode="none">
-    <ModalRootStack.Screen name={'AuthStack'} component={AuthStackScreen} />
+    headerMode="none"
+  >
+    <ModalRootStack.Screen
+      name="AuthStack"
+      component={AuthStackScreen}
+      options={{ gestureEnabled: false }}
+    />
     <ModalRootStack.Screen name="RootDrawer" component={RootDrawerScreen} />
   </ModalRootStack.Navigator>
 );
@@ -23,19 +28,36 @@ const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none" mode="modal">
     <AuthStack.Screen
-      name={'Background'}
+      name="Background"
       component={Screens.AuthBackground}
-      options={{...fadeIn()}}
+      options={{ ...fadeIn() }}
     />
     <AuthStack.Screen
-      name={'Landing'}
+      name="Landing"
       component={Screens.AuthLanding}
-      options={{...slideFromRight()}}
+      options={{
+        ...slideFromRight(),
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+      }}
     />
     <AuthStack.Screen
-      name={'SignIn'}
+      name="SignIn"
       component={Screens.AuthSignIn}
-      options={{...slideFromRight()}}
+      options={{
+        ...slideFromRight(),
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+      }}
+    />
+    <AuthStack.Screen
+      name="SignUp"
+      component={Screens.AuthSignUp}
+      options={{
+        ...slideFromRight(),
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+      }}
     />
   </AuthStack.Navigator>
 );
@@ -45,15 +67,16 @@ const RootDrawer = createDrawerNavigator();
 const RootDrawerScreen = () => (
   <RootDrawer.Navigator
     initialRouteName="Home"
-    overlayColor={'white'}
-    drawerContent={CustomDrawerContent}>
-    <RootDrawer.Screen name={'Home'} component={Screens.Home} />
-    <RootDrawer.Screen name={'Groups'} component={Screens.Groups} />
-    <RootDrawer.Screen name={'Sessions'} component={Screens.Sessions} />
-    <RootDrawer.Screen name={'Ranking'} component={Screens.Ranking} />
-    <RootDrawer.Screen name={'Stats'} component={Screens.Stats} />
-    <RootDrawer.Screen name={'Profile'} component={Screens.Profile} />
-    <RootDrawer.Screen name={'Settings'} component={Screens.Settings} />
+    overlayColor="white"
+    drawerContent={CustomDrawerContent}
+  >
+    <RootDrawer.Screen name="Home" component={Screens.Home} />
+    <RootDrawer.Screen name="Groups" component={Screens.Groups} />
+    <RootDrawer.Screen name="Sessions" component={Screens.Sessions} />
+    <RootDrawer.Screen name="Ranking" component={Screens.Ranking} />
+    <RootDrawer.Screen name="Stats" component={Screens.Stats} />
+    <RootDrawer.Screen name="Profile" component={Screens.Profile} />
+    <RootDrawer.Screen name="Settings" component={Screens.Settings} />
   </RootDrawer.Navigator>
 );
 

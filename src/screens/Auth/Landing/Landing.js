@@ -1,17 +1,35 @@
 import React from 'react';
 
-import {MainContainer, ContentContainer, Button, Text} from './styles';
+import { JumboButton } from '~/components';
 
-const Landing = ({navigation}) => {
+import {
+  MainContainer, ContentContainer, ButtonContainer, ActionsContainer, TextContainer,
+} from './styles';
+
+const Landing = ({ navigation }) => {
   return (
     <MainContainer>
       <ContentContainer>
-        <Button
-          onPress={() => {
-            navigation.navigate('SignIn');
-          }}>
-          <Text>Clica</Text>
-        </Button>
+        <TextContainer />
+        <ActionsContainer>
+          <ButtonContainer>
+            <JumboButton
+              highlight
+              onPress={() => {
+                navigation.navigate('SignUp');
+              }}
+              label="Cadastro"
+            />
+          </ButtonContainer>
+          <ButtonContainer>
+            <JumboButton
+              onPress={() => {
+                navigation.navigate('SignIn');
+              }}
+              label="Login"
+            />
+          </ButtonContainer>
+        </ActionsContainer>
       </ContentContainer>
     </MainContainer>
   );
