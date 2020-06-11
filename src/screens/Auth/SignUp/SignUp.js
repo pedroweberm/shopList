@@ -3,7 +3,7 @@ import { useMutation, gql } from '@apollo/client';
 
 import { useLoadingScreen } from '~/hooks';
 import { SignUp as Strings } from '~/language';
-import { InputField, JumboButton, Loader } from '~/components';
+import { InputField, JumboButton } from '~/components';
 
 import {
   MainContainer, ContentContainer, Title, InputContainer,

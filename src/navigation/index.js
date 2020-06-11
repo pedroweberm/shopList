@@ -37,13 +37,12 @@ const AuthStackScreen = () => (
     <AuthStack.Screen
       name="Background"
       component={Screens.AuthBackground}
-      options={{ ...fadeIn() }}
     />
     <AuthStack.Screen
       name="Landing"
       component={Screens.AuthLanding}
       options={{
-        ...slideFromRight(),
+        ...slideFromRight({}, {}, true),
         gestureEnabled: true,
         gestureDirection: 'horizontal',
       }}

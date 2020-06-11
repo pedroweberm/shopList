@@ -4,10 +4,16 @@ import { H1Bold } from '~/components/Text';
 import { normalize } from '~/helpers/responsive';
 
 export const MainContainer = styled.ScrollView.attrs({
-  contentContainerStyle: { alignItems: 'center', justifyContent: 'center', paddingBottom: normalize(80) },
+  contentContainerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: normalize(50),
+    backgroundColor: 'transparent',
+    paddingVertical: normalize(50),
+  },
 })`
   background: transparent;
-  padding: ${normalize(50)}px 0px;
+  flex: 1;
 `;
 
 export const ContentContainer = styled.View`
