@@ -9,7 +9,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'max-len': ['error', {code: 150}],
+    'max-len': ['error', { code: 150 }],
     'no-console': 'off',
     'no-tabs': 'off',
     'react/require-default-props': 'off',

@@ -6,11 +6,11 @@ import { useDisableBackHandling } from '~/hooks';
 import { MainContainer } from './styles';
 
 const Loading = ({ navigation, route }) => {
-  const { setLoadingNavigation } = route.params;
+  const { setLoadingNavigation } = route?.params || {};
 
   useDisableBackHandling(navigation);
   useEffect(() => {
-    if (navigation) {
+    if (navigation && setLoadingNavigation) {
       setLoadingNavigation(navigation);
     }
   }, [navigation, setLoadingNavigation]);

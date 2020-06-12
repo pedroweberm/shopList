@@ -17,7 +17,7 @@ const CREATE_USER_MUTATION = gql`
   }
 `;
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +35,30 @@ const SignUp = () => {
     else loadingScreen.close();
   }, [loading, data, error, called]);
 
+  useEffect(() => {
+    if (called && !loading) {
+      if (!error) {
+        navigation.navigate(
+          'ModalAuthSuccess',
+          {
+            message: 'Perfil cadastrado com sucesso! Agora use suas credenciais para fazer o login',
+            buttonLabel: 'OK',
+            onPress: () => navigation.navigate('SignIn'),
+          },
+        );
+      } else {
+        navigation.navigate(
+          'ModalAuthSuccess',
+          {
+            message: error.message,
+            buttonLabel: 'OK',
+            onPress: () => {},
+          },
+        );
+      }
+    }
+  }, [loading, data, error, called]);
+
   const onSubmit = () => {
     createUser({ variables: { phone, name, password } });
   };
@@ -43,9 +67,6 @@ const SignUp = () => {
     <MainContainer showsVerticalScrollIndicator={false}>
       <ContentContainer>
         <Title>{Strings.signUpTitle}</Title>
-        {loading && <Title>Criando...</Title>}
-        {error && <Title>{`Erro! ${error}}`}</Title>}
-        {data && <Title>{`Sucesso! ${JSON.stringify(data)}`}</Title>}
         <InputContainer>
           <InputField title="Nome" value={name} onChange={setName} type="name" />
         </InputContainer>

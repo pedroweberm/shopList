@@ -1,34 +1,41 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useSelector } from 'react-redux';
 
 import * as Screens from '~/screens';
 
 import {
-  CustomDrawerContent, fadeIn, slideFromRight, fadeFromBottom,
+  CustomDrawerContent, slideFromRight, fadeFromBottom,
 } from './styles';
 
 const ModalRootStack = createStackNavigator();
 
-const ModalRootScreen = () => (
-  <ModalRootStack.Navigator
-    mode="modal"
-    initialRouteName="AuthStack"
-    headerMode="none"
-  >
-    <ModalRootStack.Screen
-      name="Loading"
-      component={Screens.Loading}
-      options={{ ...fadeFromBottom({}, { backgroundColor: '#ffffff' }), gestureEnabled: false }}
-    />
-    <ModalRootStack.Screen
-      name="AuthStack"
-      component={AuthStackScreen}
-      options={{ gestureEnabled: false }}
-    />
-    <ModalRootStack.Screen name="RootDrawer" component={RootDrawerScreen} />
-  </ModalRootStack.Navigator>
-);
+const ModalRootScreen = () => {
+  const { isLogged } = useSelector((state) => state.UserReducer);
+
+  return (
+    <ModalRootStack.Navigator
+      mode="modal"
+      initialRouteName="AuthStack"
+      headerMode="none"
+    >
+      {!isLogged && (
+        <ModalRootStack.Screen
+          name="AuthStack"
+          component={AuthStackScreen}
+          options={{ gestureEnabled: false }}
+        />
+      )}
+      <ModalRootStack.Screen name="RootDrawer" component={RootDrawerScreen} />
+      <ModalRootStack.Screen
+        name="Loading"
+        component={Screens.Loading}
+        options={{ ...fadeFromBottom({}, { backgroundColor: '#ffffff' }), gestureEnabled: false }}
+      />
+    </ModalRootStack.Navigator>
+  );
+};
 
 const AuthStack = createStackNavigator();
 
@@ -65,6 +72,15 @@ const AuthStackScreen = () => (
         gestureDirection: 'horizontal',
       }}
     />
+    <AuthStack.Screen
+      name="ModalAuthSuccess"
+      component={Screens.ModalAuthSuccess}
+      options={{
+        ...fadeFromBottom(),
+        gestureEnabled: false,
+        gestureDirection: 'vertical',
+      }}
+    />
   </AuthStack.Navigator>
 );
 
@@ -74,7 +90,7 @@ const RootDrawerScreen = () => (
   <RootDrawer.Navigator
     initialRouteName="Home"
     overlayColor="white"
-    drawerContent={CustomDrawerContent}
+    // drawerContent={CustomDrawerContent}
   >
     <RootDrawer.Screen name="Home" component={Screens.Home} />
     <RootDrawer.Screen name="Groups" component={Screens.Groups} />

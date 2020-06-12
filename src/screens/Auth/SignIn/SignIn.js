@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
+import { useDispatch } from 'react-redux';
 
 import { useLoadingScreen } from '~/hooks';
+import { setAuthData } from '~/store/ducks/User';
 import { SignIn as Strings } from '~/language';
 import { InputField, JumboButton } from '~/components';
 
@@ -17,9 +19,11 @@ const LOGIN_QUERY = gql`
   }
 `;
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const [login, {
     data, loading, error, called,
@@ -31,8 +35,25 @@ const SignIn = () => {
     if (called && loading) loadingScreen.open();
     else if (called && !loading) {
       loadingScreen.close();
-      console.warn(data.login.token);
     } else loadingScreen.close();
+  }, [loading, data, error, called]);
+
+  useEffect(() => {
+    if (called && !loading) {
+      if (!error) {
+        navigation.navigate('RootDrawer');
+        dispatch(setAuthData({ token: data.login.token }));
+      } else {
+        navigation.navigate(
+          'ModalAuthSuccess',
+          {
+            message: error.message,
+            buttonLabel: 'OK',
+            onPress: () => {},
+          },
+        );
+      }
+    }
   }, [loading, data, error, called]);
 
   const onSubmit = () => {

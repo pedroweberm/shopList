@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform, UIManager, StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import {
-  ApolloClient, HttpLink, InMemoryCache, gql, ApolloProvider,
+  ApolloClient, HttpLink, InMemoryCache, ApolloProvider,
 } from '@apollo/client';
 
 import Navigation from '~/navigation';
-
+import store, { persistor } from '~/store';
 import theme from './theme';
 
 
@@ -28,16 +30,20 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-        <StatusBar
-          backgroundColor="white"
-          translucent
-          barStyle="dark-content"
-        />
-        <ThemeProvider theme={theme}>
-          <Navigation />
-        </ThemeProvider>
-      </NavigationContainer>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <StatusBar
+              backgroundColor="white"
+              translucent
+              barStyle="dark-content"
+            />
+            <ThemeProvider theme={theme}>
+              <Navigation />
+            </ThemeProvider>
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
     </ApolloProvider>
   );
 };

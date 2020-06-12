@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
 export const MainContainer = styled.View`
-  flex: 1;
-  background: ${({ theme }) => theme?.colors?.primary || '#fff'};
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 `;

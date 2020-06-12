@@ -14,6 +14,7 @@ export const CustomDrawerContent = (props) => {
       <DrawerItemList {...props} />
       {props.state.routes.map((route) => (
         <DrawerItem
+          key={route.key}
           label={route.name}
           onPress={() => props.navigation.navigate(route.name)}
         />

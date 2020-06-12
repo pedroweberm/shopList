@@ -10,5 +10,6 @@ export { default as AuthBackground } from './Auth/Background/Background';
 export { default as AuthLanding } from './Auth/Landing/Landing';
 export { default as AuthSignIn } from './Auth/SignIn/SignIn';
 export { default as AuthSignUp } from './Auth/SignUp/SignUp';
+export { default as ModalAuthSuccess } from './Auth/ModalSuccess/ModalSuccess';
 
 export { default as Loading } from './Loading/Loading';
