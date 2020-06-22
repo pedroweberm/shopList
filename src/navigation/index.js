@@ -5,9 +5,7 @@ import { useSelector } from 'react-redux';
 
 import * as Screens from '~/screens';
 
-import {
-  CustomDrawerContent, slideFromRight, fadeFromBottom,
-} from './styles';
+import { CustomDrawerContent, slideFromRight, fadeFromBottom } from './styles';
 
 const ModalRootStack = createStackNavigator();
 
@@ -15,18 +13,8 @@ const ModalRootScreen = () => {
   const { isLogged } = useSelector((state) => state.UserReducer);
 
   return (
-    <ModalRootStack.Navigator
-      mode="modal"
-      initialRouteName="AuthStack"
-      headerMode="none"
-    >
-      {!isLogged && (
-        <ModalRootStack.Screen
-          name="AuthStack"
-          component={AuthStackScreen}
-          options={{ gestureEnabled: false }}
-        />
-      )}
+    <ModalRootStack.Navigator mode="modal" initialRouteName="AuthStack" headerMode="none">
+      {!isLogged && <ModalRootStack.Screen name="AuthStack" component={AuthStackScreen} options={{ gestureEnabled: false }} />}
       <ModalRootStack.Screen name="RootDrawer" component={RootDrawerScreen} />
       <ModalRootStack.Screen
         name="Loading"
@@ -41,10 +29,7 @@ const AuthStack = createStackNavigator();
 
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none" mode="modal">
-    <AuthStack.Screen
-      name="Background"
-      component={Screens.AuthBackground}
-    />
+    <AuthStack.Screen name="Background" component={Screens.AuthBackground} />
     <AuthStack.Screen
       name="Landing"
       component={Screens.AuthLanding}
@@ -90,6 +75,7 @@ const RootDrawerScreen = () => (
   <RootDrawer.Navigator
     initialRouteName="Home"
     overlayColor="white"
+    headerMode="float"
     // drawerContent={CustomDrawerContent}
   >
     <RootDrawer.Screen name="Home" component={Screens.Home} />

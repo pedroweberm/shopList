@@ -9,6 +9,18 @@ import {
   MainContainer, ContentContainer, Title, InputContainer,
 } from './styles';
 
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.29,
+  shadowRadius: 4.65,
+
+  elevation: 7,
+};
+
 const CREATE_USER_MUTATION = gql`
   mutation createUser($phone: String!, $name: String!, $password: String!) {
     createUser(phone: $phone, name: $name, password: $password) {
@@ -38,23 +50,17 @@ const SignUp = ({ navigation }) => {
   useEffect(() => {
     if (called && !loading) {
       if (!error) {
-        navigation.navigate(
-          'ModalAuthSuccess',
-          {
-            message: 'Perfil cadastrado com sucesso! Agora use suas credenciais para fazer o login',
-            buttonLabel: 'OK',
-            onPress: () => navigation.navigate('SignIn'),
-          },
-        );
+        navigation.navigate('ModalAuthSuccess', {
+          message: 'Perfil cadastrado com sucesso! Agora use suas credenciais para fazer o login',
+          buttonLabel: 'OK',
+          onPress: () => navigation.navigate('SignIn'),
+        });
       } else {
-        navigation.navigate(
-          'ModalAuthSuccess',
-          {
-            message: error.message,
-            buttonLabel: 'OK',
-            onPress: () => {},
-          },
-        );
+        navigation.navigate('ModalAuthSuccess', {
+          message: error.message,
+          buttonLabel: 'OK',
+          onPress: () => {},
+        });
       }
     }
   }, [loading, data, error, called]);
@@ -65,7 +71,7 @@ const SignUp = ({ navigation }) => {
 
   return (
     <MainContainer showsVerticalScrollIndicator={false}>
-      <ContentContainer>
+      <ContentContainer style={shadowStyle}>
         <Title>{Strings.signUpTitle}</Title>
         <InputContainer>
           <InputField title="Nome" value={name} onChange={setName} type="name" />
@@ -79,12 +85,7 @@ const SignUp = ({ navigation }) => {
         <InputContainer>
           <InputField title="Confirmar senha" value={confirmedPassword} onChange={setConfirmedPassword} type="password" />
         </InputContainer>
-        <JumboButton
-          label="Cadastrar"
-          highlight
-          disabled={password !== confirmedPassword}
-          onPress={() => onSubmit()}
-        />
+        <JumboButton label="Cadastrar" highlight disabled={password !== confirmedPassword} onPress={() => onSubmit()} />
       </ContentContainer>
     </MainContainer>
   );

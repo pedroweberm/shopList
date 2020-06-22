@@ -7,7 +7,7 @@ export const MainContainer = styled.ScrollView.attrs({
   contentContainerStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: normalize(50),
+    flexDirection: 'column',
     backgroundColor: 'transparent',
     paddingVertical: normalize(50),
   },
@@ -20,7 +20,6 @@ export const ContentContainer = styled.View`
   width: 90%;
   border-radius: 40px;
   background: white;
-  elevation: 7;
   padding: ${normalize(30)}px ${normalize(20)}px;
 `;
 

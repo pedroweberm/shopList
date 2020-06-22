@@ -11,6 +11,18 @@ import {
   MainContainer, ContentContainer, Title, InputContainer,
 } from './styles';
 
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.29,
+  shadowRadius: 4.65,
+
+  elevation: 7,
+};
+
 const LOGIN_QUERY = gql`
   query login($phone: String!, $password: String!) {
     login(phone: $phone, password: $password) {
@@ -44,14 +56,11 @@ const SignIn = ({ navigation }) => {
         navigation.navigate('RootDrawer');
         dispatch(setAuthData({ token: data.login.token }));
       } else {
-        navigation.navigate(
-          'ModalAuthSuccess',
-          {
-            message: error.message,
-            buttonLabel: 'OK',
-            onPress: () => {},
-          },
-        );
+        navigation.navigate('ModalAuthSuccess', {
+          message: error.message,
+          buttonLabel: 'OK',
+          onPress: () => {},
+        });
       }
     }
   }, [loading, data, error, called]);
@@ -62,7 +71,7 @@ const SignIn = ({ navigation }) => {
 
   return (
     <MainContainer>
-      <ContentContainer>
+      <ContentContainer style={shadowStyle}>
         <Title>{Strings.signInTitle}</Title>
         <InputContainer>
           <InputField title="Telefone" value={phone} onChange={setPhone} type="phone" />
@@ -70,11 +79,7 @@ const SignIn = ({ navigation }) => {
         <InputContainer>
           <InputField title="Senha" value={password} onChange={setPassword} type="password" />
         </InputContainer>
-        <JumboButton
-          label="Entrar"
-          highlight
-          onPress={() => onSubmit()}
-        />
+        <JumboButton label="Entrar" highlight onPress={() => onSubmit()} />
       </ContentContainer>
     </MainContainer>
   );
