@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { JumboButton } from '~/components';
+import { JumboButton, ListsCarousel } from '~/components';
 
 import {
-  MainContainer, NewButton, NewButtonLabel, SectionTitle, SectionTitleContainer,
+  MainContainer, NewButton, NewButtonLabel, SectionTitle, SectionTitleContainer, CarouselContainer,
 } from './styles';
 
 const Home = () => {
@@ -15,6 +15,17 @@ const Home = () => {
           <NewButtonLabel>Nova lista</NewButtonLabel>
         </NewButton>
       </SectionTitleContainer>
+      <CarouselContainer>
+        <ListsCarousel
+          lists={[
+            { name: 'Mercado dos Weber' },
+            { name: 'Mercado dos Weber' },
+            { name: 'Mercado dos Weber' },
+            { name: 'Mercado dos Weber' },
+            { name: 'Mercado dos Weber' },
+          ]}
+        />
+      </CarouselContainer>
       {/* <JumboButton label="Criar lista" /> */}
     </MainContainer>
   );

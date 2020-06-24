@@ -12,6 +12,7 @@ export default {
       thin: 'Montserrat-Thin',
       medium: 'Montserrat-Medium',
       regular: 'Montserrat-Regular',
+      semiBold: 'Montserrat-SemiBold',
       bold: 'Montserrat-Bold',
       black: 'Montserrat-Black',
     },

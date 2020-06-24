@@ -1,3 +1,1 @@
-import * as Responsive from './responsive';
-
-export {Responsive};
+export * from './responsive';

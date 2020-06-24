@@ -25,3 +25,7 @@ export const NewButtonLabel = styled(H2Bold)`
 `;
 
 export const NewButton = styled.TouchableOpacity``;
+
+export const CarouselContainer = styled.View`
+  margin: ${normalize(20)}px 0px;
+`
