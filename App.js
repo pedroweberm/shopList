@@ -17,7 +17,7 @@ import theme from './theme';
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: `http://${API_AWS_HOST}/graphql`,
+    uri: `${API_AWS_HOST}/graphql`,
   }),
 });
 

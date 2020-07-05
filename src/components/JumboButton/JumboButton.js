@@ -15,13 +15,11 @@ const shadowStyle = {
 };
 
 const JumboButton = ({
-  label, onPress, highlight, disabled,
+  label, onPress, highlight, disabled, style,
 }) => {
   return (
-    <MainContainer onPress={onPress} highlight={highlight} style={shadowStyle} disabled={disabled}>
-      <Label highlight={highlight}>
-        {label}
-      </Label>
+    <MainContainer onPress={onPress} highlight={highlight} style={{ ...shadowStyle, ...style }} disabled={disabled}>
+      <Label highlight={highlight}>{label}</Label>
     </MainContainer>
   );
 };

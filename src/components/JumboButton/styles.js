@@ -15,5 +15,5 @@ export const MainContainer = styled.TouchableOpacity`
 `;
 
 export const Label = styled(H2Bold)`
-  color: ${({ theme, highlight }) => (highlight ? theme?.colors?.white : theme?.colors?.primary)}
+  color: ${({ theme, highlight }) => (highlight ? theme?.colors?.white : theme?.colors?.primary)};
 `;

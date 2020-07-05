@@ -1,9 +1,10 @@
 import React from 'react';
+import { View } from 'react-native';
 
 import { JumboButton } from '~/components';
 
 import {
-  MainContainer, ContentContainer, ButtonContainer, ActionsContainer, TextContainer,
+  MainContainer, ContentContainer, ButtonContainer, ActionsContainer, TextContainer, TestContainer, Box,
 } from './styles';
 
 const shadowStyle = {

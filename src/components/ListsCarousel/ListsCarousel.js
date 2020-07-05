@@ -13,6 +13,7 @@ const ListsCarousel = ({ lists }) => {
       <SideSwipe
         itemWidth={widthPercentage(65)}
         style={{ width: widthPercentage(100) }}
+        useVelocityForIndex={false}
         data={lists}
         contentOffset={contentOffset}
         renderItem={({

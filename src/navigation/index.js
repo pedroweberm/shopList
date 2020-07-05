@@ -62,12 +62,31 @@ const AuthStackScreen = () => (
       component={Screens.ModalAuthSuccess}
       options={{
         ...fadeFromBottom(),
-        gestureEnabled: false,
+        gestureEnabled: true,
         gestureDirection: 'vertical',
       }}
     />
   </AuthStack.Navigator>
 );
+
+const HomeStack = createStackNavigator();
+
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator headerMode="none">
+      <HomeStack.Screen name="Home" component={Screens.Home} />
+      <HomeStack.Screen
+        name="NewList"
+        component={Screens.NewListModal}
+        options={{
+          ...fadeFromBottom(),
+          gestureEnabled: false,
+          gestureDirection: 'vertical',
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+};
 
 const RootDrawer = createDrawerNavigator();
 
@@ -78,7 +97,7 @@ const RootDrawerScreen = () => (
     headerMode="float"
     // drawerContent={CustomDrawerContent}
   >
-    <RootDrawer.Screen name="Home" component={Screens.Home} />
+    <RootDrawer.Screen name="HomeStack" component={HomeStackScreen} />
     <RootDrawer.Screen name="Groups" component={Screens.Groups} />
     <RootDrawer.Screen name="Sessions" component={Screens.Sessions} />
     <RootDrawer.Screen name="Ranking" component={Screens.Ranking} />

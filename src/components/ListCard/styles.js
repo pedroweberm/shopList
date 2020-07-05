@@ -7,10 +7,12 @@ import { H1SemiBold } from '~/components/Text';
 
 export const MainContainer = styled(Animated.View)`
   width: ${widthPercentage(65)}px;
+  height: 100%;
   border-radius: ${normalize(20)}px;
   background: ${({ theme }) => theme?.colors?.primary};
   align-items: center;
-  padding: ${normalize(60)}px 0px;
+  justify-content: center;
+  /* padding: ${normalize(60)}px 0px; */
 `;
 
 export const ListTitleContainer = styled.TouchableOpacity`
