@@ -185,6 +185,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6D2785047FE697011B607812 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C92FBBA5AC9326C413DE62E8 /* Pods-listaCompras.debug.xcconfig */,
+				AB5FCF1B906769E28A5E66AB /* Pods-listaCompras.release.xcconfig */,
+				FD0986A8B578CF1364419B29 /* Pods-listaCompras-listaComprasTests.debug.xcconfig */,
+				1070A2DBF0ACF6726053CB5C /* Pods-listaCompras-listaComprasTests.release.xcconfig */,
+				7615F8181904D236E08E840B /* Pods-listaCompras-tvOS.debug.xcconfig */,
+				7CF3EABAFFDC11BA933EBD12 /* Pods-listaCompras-tvOS.release.xcconfig */,
+				964D24E270AD4EFCF7AF0313 /* Pods-listaCompras-tvOSTests.debug.xcconfig */,
+				898FB44DF3A9DB2A4811689C /* Pods-listaCompras-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
