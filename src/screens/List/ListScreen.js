@@ -1,9 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
-
-import { JumboButton, ListsCarousel } from '~/components';
-
+import { AddUser, Hamburger } from '~/assets/icons';
 import {
   MainContainer, NewButton, NewButtonLabel, SectionTitle, SectionTitleContainer, CarouselContainer,
 } from './styles';
@@ -32,14 +30,12 @@ const Home = ({ navigation }) => {
   return (
     <MainContainer>
       <SectionTitleContainer>
-        <SectionTitle>Suas listas</SectionTitle>
-        <NewButton onPress={() => navigation.navigate('NewList', { onSuccess: refetch })}>
-          <NewButtonLabel>Nova lista</NewButtonLabel>
+        <Hamburger />
+        <SectionTitle>Nome da lista</SectionTitle>
+        <NewButton onPress={() => navigation.navigate('NewParticipant')}>
+          <AddUser />
         </NewButton>
       </SectionTitleContainer>
-      <CarouselContainer>
-        <ListsCarousel lists={data?.getUserData?.lists} navigation={navigation} />
-      </CarouselContainer>
     </MainContainer>
   );
 };
