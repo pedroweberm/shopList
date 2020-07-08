@@ -48,7 +48,7 @@ const NewListModal = ({ navigation, route }) => {
   const [phone, setPhone] = useState('');
 
   const onSubmit = () => {
-    addParticipant({ variables: { phone } });
+    addParticipant({ variables: { userPhone: phone, listId } });
   };
 
   useEffect(() => {
