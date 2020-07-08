@@ -69,6 +69,25 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
+const ListStack = createStackNavigator();
+
+const ListStackScreen = () => {
+  return (
+    <ListStack.Navigator headerMode="none">
+      <ListStack.Screen name="ListHome" component={Screens.List} />
+      <ListStack.Screen
+        name="NewParticipant"
+        component={Screens.NewParticipantModal}
+        options={{
+          ...fadeFromBottom(),
+          gestureEnabled: false,
+          gestureDirection: 'vertical',
+        }}
+      />
+    </ListStack.Navigator>
+  );
+};
+
 const HomeStack = createStackNavigator();
 
 const HomeStackScreen = () => {
@@ -84,26 +103,8 @@ const HomeStackScreen = () => {
           gestureDirection: 'vertical',
         }}
       />
+      <HomeStack.Screen name="List" component={ListStackScreen} />
     </HomeStack.Navigator>
-  );
-};
-
-const ListStack = createStackNavigator();
-
-const ListStackScreen = () => {
-  return (
-    <ListStack.Navigator headerMode="none">
-      <ListStack.Screen name="List" component={Screens.List} />
-      <ListStack.Screen
-        name="NewParticipant"
-        component={Screens.NewParticipantModal}
-        options={{
-          ...fadeFromBottom(),
-          gestureEnabled: false,
-          gestureDirection: 'vertical',
-        }}
-      />
-    </ListStack.Navigator>
   );
 };
 
@@ -114,10 +115,9 @@ const RootDrawerScreen = () => (
     initialRouteName="Home"
     overlayColor="white"
     headerMode="float"
-  // drawerContent={CustomDrawerContent}
+    // drawerContent={CustomDrawerContent}
   >
     <RootDrawer.Screen name="HomeStack" component={HomeStackScreen} />
-    <RootDrawer.Screen name="List" component={ListStackScreen} />
     <RootDrawer.Screen name="Groups" component={Screens.Groups} />
     <RootDrawer.Screen name="Sessions" component={Screens.Sessions} />
     <RootDrawer.Screen name="Ranking" component={Screens.Ranking} />

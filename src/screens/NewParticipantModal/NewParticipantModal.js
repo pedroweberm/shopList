@@ -23,19 +23,19 @@ const shadowStyle = {
 };
 
 const ADD_PARTICIPANT_MUTATION = gql`
-  mutation createList($name: String!) {
-    createList(name: $name) {
+  mutation addUserToList($listId: ID!, $userPhone: String!) {
+    addUserToList(listId: $listId, userPhone: $userPhone) {
       _id
     }
   }
 `;
 
-const NewListModal = ({ navigation }) => {
-
+const NewListModal = ({ navigation, route }) => {
+  const { listId } = route?.params;
   const { token } = useSelector((state) => state.UserReducer);
   const loadingScreen = useLoadingScreen();
 
-  const [AddParticipant, {
+  const [addParticipant, {
     data, loading, error, called,
   }] = useMutation(ADD_PARTICIPANT_MUTATION, {
     context: {
@@ -48,7 +48,7 @@ const NewListModal = ({ navigation }) => {
   const [phone, setPhone] = useState('');
 
   const onSubmit = () => {
-    AddParticipant({ variables: { phone } });
+    addParticipant({ variables: { phone } });
   };
 
   useEffect(() => {
