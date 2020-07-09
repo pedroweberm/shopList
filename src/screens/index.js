@@ -10,6 +10,7 @@ export { default as NewListModal } from './NewListModal/NewListModal';
 
 export { default as List } from './List/ListScreen';
 export { default as NewParticipantModal } from './NewParticipantModal/NewParticipantModal';
+export { default as AddItemModal } from './AddItemModal/AddItemModal';
 
 export { default as AuthBackground } from './Auth/Background/Background';
 export { default as AuthLanding } from './Auth/Landing/Landing';

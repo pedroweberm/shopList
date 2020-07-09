@@ -6,7 +6,7 @@ import { H2Regular, H2Bold } from '~/components/Text';
 export const MainContainer = styled.View`
   flex: 1;
   background: ${({ theme }) => theme?.colors?.light || '#fff'};
-  padding: ${normalize(50)}px 0px;
+  padding: ${normalize(10)}px 0px;
 `;
 
 export const SectionTitleContainer = styled.View`
@@ -27,5 +27,5 @@ export const NewButtonLabel = styled(H2Bold)`
 export const NewButton = styled.TouchableOpacity``;
 
 export const CarouselContainer = styled.View`
-  margin: ${normalize(20)}px 0px;
-`
+  padding: ${normalize(10)}px 0px ${normalize(20)}px 0px;
+`;

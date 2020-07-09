@@ -22,20 +22,26 @@ const shadowStyle = {
   elevation: 7,
 };
 
-const ADD_PARTICIPANT_MUTATION = gql`
-  mutation addUserToList($listId: ID!, $userPhone: String!) {
-    addUserToList(listId: $listId, userPhone: $userPhone)
+const ADD_ITEM_MUTATION = gql`
+  mutation addItemToList($listId: ID!, $name: String!, $quantity: String!) {
+    addItemToList(listId: $listId, name: $name, quantity: $quantity) {
+      _id
+      name
+      checked
+      unavailable
+      quantity
+    }
   }
 `;
 
-const NewListModal = ({ navigation, route }) => {
-  const { listId } = route?.params;
+const AddItemModal = ({ navigation, route }) => {
+  const { listId, onNewItem } = route?.params;
   const { token } = useSelector((state) => state.UserReducer);
   const loadingScreen = useLoadingScreen();
 
-  const [addParticipant, {
+  const [addItem, {
     data, loading, error, called,
-  }] = useMutation(ADD_PARTICIPANT_MUTATION, {
+  }] = useMutation(ADD_ITEM_MUTATION, {
     context: {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -43,10 +49,11 @@ const NewListModal = ({ navigation, route }) => {
     },
   });
 
-  const [phone, setPhone] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [itemQuantity, setItemQuantity] = useState('');
 
   const onSubmit = () => {
-    addParticipant({ variables: { userPhone: phone, listId } });
+    addItem({ variables: { listId, name: itemName, quantity: itemQuantity } });
   };
 
   useEffect(() => {
@@ -58,6 +65,7 @@ const NewListModal = ({ navigation, route }) => {
   useEffect(() => {
     if (called && !loading) {
       if (!error) {
+        onNewItem({ item: data?.addItemToList });
         navigation.goBack();
       } else console.warn(error);
     }
@@ -66,15 +74,18 @@ const NewListModal = ({ navigation, route }) => {
   return (
     <MainContainer>
       <ContentContainer style={shadowStyle}>
-        <Title>Adicionar participante</Title>
+        <Title>Adicionar item</Title>
         <InputContainer>
-          <InputField title="Número de telefone" value={phone} onChange={setPhone} type="phone" />
+          <InputField title="Nome do item" value={itemName} onChange={setItemName} type="name" />
+        </InputContainer>
+        <InputContainer>
+          <InputField title="Quantidade" value={itemQuantity} onChange={setItemQuantity} type="number" />
         </InputContainer>
         <JumboButton label="Cancelar" onPress={() => navigation.goBack()} style={{ marginBottom: normalize(10) }} />
-        <JumboButton label="Adicionar" highlight disabled={phone.length <= 0} onPress={onSubmit} />
+        <JumboButton label="Adicionar" highlight disabled={itemName.length <= 0} onPress={onSubmit} />
       </ContentContainer>
     </MainContainer>
   );
 };
 
-export default NewListModal;
+export default AddItemModal;

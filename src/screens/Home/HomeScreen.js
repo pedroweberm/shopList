@@ -11,6 +11,7 @@ import {
 const GET_USER_QUERY = gql`
   query getUserData {
     getUserData {
+      phone
       lists {
         name
         _id
@@ -29,6 +30,8 @@ const Home = ({ navigation }) => {
       },
     },
   });
+
+  console.warn(data?.getUserData?.phone);
 
   const onPressList = ({ id }) => {
     navigation.navigate('List', { screen: 'ListHome', params: { listId: id } });
