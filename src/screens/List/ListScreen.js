@@ -15,13 +15,6 @@ const ListScreen = ({ route, navigation }) => {
 
   return (
     <MainContainer refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}>
-      <SectionTitleContainer>
-        <Hamburger />
-        <SectionTitle>{listName}</SectionTitle>
-        <NewButton onPress={onPressNew}>
-          <AddUser />
-        </NewButton>
-      </SectionTitleContainer>
       <SectionTitle>{loading ? 'Carregando' : list?.map((item) => `${item?.quantity} ${item?.name}`)}</SectionTitle>
     </MainContainer>
   );

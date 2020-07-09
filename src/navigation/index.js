@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useSelector } from 'react-redux';
 
 import * as Screens from '~/screens';
+import { Header } from '~/components';
 
 import { CustomDrawerContent, slideFromRight, fadeFromBottom } from './styles';
 
@@ -94,6 +95,7 @@ const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator headerMode="none">
       <HomeStack.Screen name="Home" component={Screens.Home} />
+      <HomeStack.Screen name="List" component={ListStackScreen} />
       <HomeStack.Screen
         name="NewList"
         component={Screens.NewListModal}
@@ -103,7 +105,6 @@ const HomeStackScreen = () => {
           gestureDirection: 'vertical',
         }}
       />
-      <HomeStack.Screen name="List" component={ListStackScreen} />
     </HomeStack.Navigator>
   );
 };
@@ -111,12 +112,7 @@ const HomeStackScreen = () => {
 const RootDrawer = createDrawerNavigator();
 
 const RootDrawerScreen = () => (
-  <RootDrawer.Navigator
-    initialRouteName="Home"
-    overlayColor="white"
-    headerMode="float"
-    // drawerContent={CustomDrawerContent}
-  >
+  <RootDrawer.Navigator initialRouteName="Home" overlayColor="white" headerMode="float" style={{ padding: 0 }}>
     <RootDrawer.Screen name="HomeStack" component={HomeStackScreen} />
     <RootDrawer.Screen name="Groups" component={Screens.Groups} />
     <RootDrawer.Screen name="Sessions" component={Screens.Sessions} />

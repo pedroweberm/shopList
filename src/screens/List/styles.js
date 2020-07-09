@@ -1,21 +1,12 @@
 import styled from 'styled-components/native';
 
 import { normalize } from '~/helpers/responsive';
-import { H2Regular, H2Bold } from '~/components/Text';
+import { H2Bold, H2Regular } from '~/components/Text';
 
 export const MainContainer = styled.ScrollView`
   flex: 1;
   background: ${({ theme }) => theme?.colors?.light || '#fff'};
   padding: ${normalize(50)}px 0px;
-`;
-
-export const SectionTitleContainer = styled.View`
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #ff776f;
-  padding: 0px ${normalize(15)}px;
 `;
 
 export const SectionTitle = styled(H2Regular)``;

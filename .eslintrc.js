@@ -17,6 +17,7 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'func-names': 'off',
     'no-void': 'off',
+    'react/prop-types': 'off',
   },
   globals: {
     fetch: false,
