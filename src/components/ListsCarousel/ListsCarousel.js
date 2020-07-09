@@ -7,7 +7,7 @@ import { widthPercentage, normalize } from '~/helpers';
 
 const contentOffset = widthPercentage(35) / 2;
 
-const ListsCarousel = ({ lists }) => {
+const ListsCarousel = ({ onPressList, lists }) => {
   return (
     <MainContainer>
       <SideSwipe
@@ -22,6 +22,7 @@ const ListsCarousel = ({ lists }) => {
           return (
             <CardContainer>
               <ListCard
+                onPress={() => onPressList({ id: item._id })}
                 animatedStyle={{
                   transform: [
                     {

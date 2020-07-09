@@ -14,10 +14,10 @@ const shadowStyle = {
   elevation: 6,
 };
 
-const ListCard = ({ listTitle, animatedStyle }) => {
+const ListCard = ({ onPress, listTitle, animatedStyle }) => {
   return (
     <MainContainer style={animatedStyle}>
-      <ListTitleContainer style={shadowStyle}>
+      <ListTitleContainer onPress={onPress} style={shadowStyle}>
         <ListTitle>{listTitle}</ListTitle>
       </ListTitleContainer>
     </MainContainer>

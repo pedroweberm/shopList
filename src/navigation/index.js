@@ -69,6 +69,25 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
+const ListStack = createStackNavigator();
+
+const ListStackScreen = () => {
+  return (
+    <ListStack.Navigator headerMode="none">
+      <ListStack.Screen name="ListHome" component={Screens.List} />
+      <ListStack.Screen
+        name="NewParticipant"
+        component={Screens.NewParticipantModal}
+        options={{
+          ...fadeFromBottom(),
+          gestureEnabled: false,
+          gestureDirection: 'vertical',
+        }}
+      />
+    </ListStack.Navigator>
+  );
+};
+
 const HomeStack = createStackNavigator();
 
 const HomeStackScreen = () => {
@@ -84,6 +103,7 @@ const HomeStackScreen = () => {
           gestureDirection: 'vertical',
         }}
       />
+      <HomeStack.Screen name="List" component={ListStackScreen} />
     </HomeStack.Navigator>
   );
 };
