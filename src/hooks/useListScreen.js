@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { LayoutAnimation } from 'react-native';
 import { gql, useQuery, useSubscription } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -48,9 +49,9 @@ const useListScreen = ({ listId }) => {
   });
 
   const onSubscriptionData = ({ subscriptionData }) => {
-    console.warn('received data', subscriptionData.data);
     if (subscriptionData?.data) {
-      setList([...list, subscriptionData?.data?.LIST_ITEM_ADDED]);
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setList([subscriptionData?.data?.LIST_ITEM_ADDED, ...list]);
     }
   };
 
