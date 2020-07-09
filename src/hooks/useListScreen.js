@@ -48,6 +48,7 @@ const useListScreen = ({ listId }) => {
   });
 
   const onSubscriptionData = ({ subscriptionData }) => {
+    console.warn('received data', subscriptionData.data);
     if (subscriptionData?.data) {
       setList([...list, subscriptionData?.data?.LIST_ITEM_ADDED]);
     }

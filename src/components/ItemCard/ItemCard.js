@@ -16,8 +16,8 @@ const shadowStyle = {
 
 const ItemCard = ({ onPress, itemName, itemQtd }) => {
   return (
-    <MainContainer>
-      <ListTitleContainer onPress={onPress} style={shadowStyle}>
+    <MainContainer style={shadowStyle}>
+      <ListTitleContainer onPress={onPress}>
         <ListTitle>{itemName}</ListTitle>
         <ListTitle>{itemQtd}</ListTitle>
       </ListTitleContainer>

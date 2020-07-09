@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { normalize } from '~/helpers/responsive';
 import { H2Bold, H2Regular } from '~/components/Text';
 
-export const MainContainer = styled.ScrollView`
+export const MainContainer = styled.View`
   flex: 1;
   background: ${({ theme }) => theme?.colors?.light || '#fff'};
 `;

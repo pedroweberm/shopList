@@ -1,5 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { View, Text, RefreshControl, FlatList as List } from 'react-native';
+import {
+  View, Text, RefreshControl, FlatList as List,
+} from 'react-native';
 
 import { useListScreen } from '~/hooks';
 import { AddUser, Hamburger } from '~/assets/icons';
@@ -60,14 +62,15 @@ const ListScreen = ({ route, navigation }) => {
   return (
     <MainContainer>
       <List
-        contentContainerStyle={!list.length && {
-          flex: 1,
-          justifyContent: 'center',
-        }}
+        contentContainerStyle={
+          !list.length && {
+            flex: 1,
+            justifyContent: 'center',
+          }
+        }
         data={list}
         renderItem={renderItem}
-        refreshing={loading}
-        onRefresh={onRefresh}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}
         ListEmptyComponent={loading ? <Loader /> : <Text>Nada de itens</Text>}
         // onEndReached={list.length > 14 && !loading && (() => loadPage())}
         onEndReachedThreshold={0.1}
