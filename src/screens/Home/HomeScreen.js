@@ -11,8 +11,10 @@ import {
 const GET_USER_QUERY = gql`
   query getUserData {
     getUserData {
+      phone
       lists {
         name
+        _id
       }
     }
   }
@@ -29,6 +31,12 @@ const Home = ({ navigation }) => {
     },
   });
 
+  console.warn(data?.getUserData?.phone);
+
+  const onPressList = ({ id }) => {
+    navigation.navigate('List', { screen: 'ListHome', params: { listId: id } });
+  };
+
   return (
     <MainContainer>
       <SectionTitleContainer>
@@ -38,7 +46,7 @@ const Home = ({ navigation }) => {
         </NewButton>
       </SectionTitleContainer>
       <CarouselContainer>
-        <ListsCarousel lists={data?.getUserData?.lists} />
+        <ListsCarousel lists={data?.getUserData?.lists} onPressList={onPressList} />
       </CarouselContainer>
     </MainContainer>
   );

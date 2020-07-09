@@ -14,6 +14,12 @@ export const H1SemiBold = styled.Text`
   color: ${({ theme }) => theme?.colors?.primary};
 `;
 
+export const H2Black = styled.Text`
+  font-family: ${({ theme }) => theme?.fonts?.primary?.black};
+  font-size: ${normalize(25)}px;
+  color: ${({ theme }) => theme?.colors?.primary};
+`;
+
 export const H2Bold = styled.Text`
   font-family: ${({ theme }) => theme?.fonts?.primary?.bold};
   font-size: ${normalize(25)}px;
