@@ -24,9 +24,7 @@ const shadowStyle = {
 
 const ADD_PARTICIPANT_MUTATION = gql`
   mutation addUserToList($listId: ID!, $userPhone: String!) {
-    addUserToList(listId: $listId, userPhone: $userPhone) {
-      _id
-    }
+    addUserToList(listId: $listId, userPhone: $userPhone)
   }
 `;
 

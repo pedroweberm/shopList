@@ -1,55 +1,28 @@
-import React, { useCallback } from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { useSelector } from 'react-redux';
-import { useFocusEffect } from '@react-navigation/native';
+import React from 'react';
+import { RefreshControl } from 'react-native';
+
+import { useListScreen } from '~/hooks';
 import { AddUser, Hamburger } from '~/assets/icons';
 import {
-  MainContainer, NewButton, NewButtonLabel, SectionTitle, SectionTitleContainer, CarouselContainer,
+  MainContainer, NewButton, SectionTitle, SectionTitleContainer,
 } from './styles';
-
-const GET_LIST_QUERY = gql`
-  query list($id: ID!) {
-    list(id: $id) {
-      name
-      items {
-        name
-        quantity
-      }
-    }
-  }
-`;
 
 const ListScreen = ({ route, navigation }) => {
   const { listId } = route?.params;
-  const { token } = useSelector((state) => state.UserReducer);
-
   const {
-    data, loading, error, refetch,
-  } = useQuery(GET_LIST_QUERY, {
-    variables: { id: listId },
-    context: {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  });
-
-  useFocusEffect(
-    useCallback(() => {
-      refetch();
-    }, []),
-  );
+    listName, onPressNew, loading, list, onRefresh,
+  } = useListScreen({ listId });
 
   return (
-    <MainContainer>
+    <MainContainer refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}>
       <SectionTitleContainer>
         <Hamburger />
-        <SectionTitle>{data?.list?.name}</SectionTitle>
-        <NewButton onPress={() => navigation.navigate('NewParticipant', { listId })}>
+        <SectionTitle>{listName}</SectionTitle>
+        <NewButton onPress={onPressNew}>
           <AddUser />
         </NewButton>
       </SectionTitleContainer>
-      <SectionTitle>{loading ? 'Carregando' : data.list.items.map((item) => `${item.quantity} ${item.name}`)}</SectionTitle>
+      <SectionTitle>{loading ? 'Carregando' : list?.map((item) => `${item?.quantity} ${item?.name}`)}</SectionTitle>
     </MainContainer>
   );
 };
