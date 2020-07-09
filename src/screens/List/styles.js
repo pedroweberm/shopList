@@ -22,3 +22,10 @@ export const NewButton = styled.TouchableOpacity`
 export const CarouselContainer = styled.View`
   margin: ${normalize(20)}px 0px;
 `;
+
+export const Loader = styled.ActivityIndicator.attrs(({ theme }) => ({
+  size: 'large',
+  color: theme?.colors?.darkGray,
+}))`
+  padding: 24px;
+`;
