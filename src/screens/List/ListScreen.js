@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { RefreshControl } from 'react-native';
 
 import { useListScreen } from '~/hooks';
@@ -12,6 +12,16 @@ const ListScreen = ({ route, navigation }) => {
   const {
     listName, onPressNew, loading, list, onRefresh,
   } = useListScreen({ listId });
+
+  useLayoutEffect(() => {
+    navigation.dangerouslyGetParent().setOptions({
+      headerRight: () => (
+        <NewButton onPress={() => navigation.navigate('NewParticipant', { listId })}>
+          <AddUser />
+        </NewButton>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <MainContainer refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}>

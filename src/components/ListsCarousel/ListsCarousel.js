@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SideSwipe from 'react-native-sideswipe';
 
 import ListCard from '../ListCard/ListCard';

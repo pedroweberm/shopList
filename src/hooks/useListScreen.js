@@ -58,6 +58,7 @@ const useListScreen = ({ listId }) => {
   useEffect(() => {
     if (data) {
       setList(data?.list?.items);
+      navigation.dangerouslyGetParent().setOptions({ headerTitle: data?.list?.name });
     }
   }, [data]);
 

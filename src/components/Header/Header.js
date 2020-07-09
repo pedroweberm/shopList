@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AddUser, Hamburger } from '~/assets/icons';
@@ -12,11 +13,12 @@ const Header = ({ scene, previous, navigation }) => {
 
   return (
     <MainContainer top={top}>
-      <Hamburger />
+      <StatusBar translucent />
+      {/* <Hamburger />
       <HeaderTitle>{title}</HeaderTitle>
       <NewButton onPress={() => console.warn('Press new')}>
         <AddUser />
-      </NewButton>
+      </NewButton> */}
     </MainContainer>
   );
 };

@@ -4,7 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useSelector } from 'react-redux';
 
 import * as Screens from '~/screens';
-import { Header } from '~/components';
+import { normalize } from '~/helpers';
 
 import { CustomDrawerContent, slideFromRight, fadeFromBottom } from './styles';
 
@@ -83,19 +83,44 @@ const ListStackScreen = () => {
           ...fadeFromBottom(),
           gestureEnabled: false,
           gestureDirection: 'vertical',
+          headerShown: false,
         }}
       />
     </ListStack.Navigator>
   );
 };
 
+const headerOptions = {
+  headerStyle: { backgroundColor: '#665CBF' },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: normalize(24),
+    fontWeight: undefined,
+    letterSpacing: 1.2,
+  },
+};
+
 const HomeStack = createStackNavigator();
 
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator headerMode="none">
-      <HomeStack.Screen name="Home" component={Screens.Home} />
-      <HomeStack.Screen name="List" component={ListStackScreen} />
+    <HomeStack.Navigator headerMode="float">
+      <HomeStack.Screen
+        name="Home"
+        component={Screens.Home}
+        options={{
+          headerTitle: 'Home',
+          ...headerOptions,
+        }}
+      />
+      <HomeStack.Screen
+        name="List"
+        component={ListStackScreen}
+        options={{
+          ...headerOptions,
+        }}
+      />
       <HomeStack.Screen
         name="NewList"
         component={Screens.NewListModal}
@@ -103,6 +128,7 @@ const HomeStackScreen = () => {
           ...fadeFromBottom(),
           gestureEnabled: false,
           gestureDirection: 'vertical',
+          headerShown: false,
         }}
       />
     </HomeStack.Navigator>
@@ -112,7 +138,7 @@ const HomeStackScreen = () => {
 const RootDrawer = createDrawerNavigator();
 
 const RootDrawerScreen = () => (
-  <RootDrawer.Navigator initialRouteName="Home" overlayColor="white" headerMode="float" style={{ padding: 0 }}>
+  <RootDrawer.Navigator initialRouteName="Home" overlayColor="white" screenOptions={{ headerTitle: 'Joao' }}>
     <RootDrawer.Screen name="HomeStack" component={HomeStackScreen} />
     <RootDrawer.Screen name="Groups" component={Screens.Groups} />
     <RootDrawer.Screen name="Sessions" component={Screens.Sessions} />
