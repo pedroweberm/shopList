@@ -1,26 +1,35 @@
 import React from 'react';
 
-import { MainContainer, ListTitleContainer, ListTitle } from './styles';
+import { ToggleButton } from '~/components';
+
+import {
+  MainContainer, ContentContainer, ItemName, ItemQuantity, NameContainer,
+} from './styles';
 
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 4,
+    height: 3,
   },
-  shadowOpacity: 0.5,
-  shadowRadius: 4.62,
+  shadowOpacity: 0.27,
+  shadowRadius: 4.65,
 
   elevation: 6,
 };
 
-const ItemCard = ({ onPress, itemName, itemQtd }) => {
+const ItemCard = ({
+  onPress, itemName, itemQtd, checked, onCheck,
+}) => {
   return (
     <MainContainer style={shadowStyle}>
-      <ListTitleContainer onPress={onPress}>
-        <ListTitle>{itemName}</ListTitle>
-        <ListTitle>{itemQtd}</ListTitle>
-      </ListTitleContainer>
+      <ContentContainer onPress={onPress}>
+        <NameContainer checked={checked}>
+          <ItemQuantity>{`${itemQtd}x `}</ItemQuantity>
+          <ItemName>{`${itemName}`}</ItemName>
+        </NameContainer>
+        <ToggleButton toggleState={checked} onToggle={onCheck} />
+      </ContentContainer>
     </MainContainer>
   );
 };

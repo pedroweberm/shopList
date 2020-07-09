@@ -7,3 +7,4 @@ export { default as ItemCard } from './ItemCard/ItemCard';
 export { default as ListCard } from './ListCard/ListCard';
 export { default as ListsCarousel } from './ListsCarousel/ListsCarousel';
 export { default as Header } from './Header/Header';
+export { default as ToggleButton } from './ToggleButton/ToggleButton';

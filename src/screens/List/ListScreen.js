@@ -5,21 +5,22 @@ import {
 
 import { useListScreen } from '~/hooks';
 import { AddUser, Hamburger } from '~/assets/icons';
-import { ItemCard } from '~/components';
+import { ItemCard, JumboButton } from '~/components';
 import {
-  MainContainer, NewButton, SectionTitle, SectionTitleContainer, Loader,
+  MainContainer, NewButton, JumboContainer, Loader,
 } from './styles';
+import { normalize } from '~/helpers';
 
 const ListScreen = ({ route, navigation }) => {
   const { listId } = route?.params;
   const {
-    listName, onPressNew, loading, list, onRefresh,
+    onPressNewItem, onPressAddParticipant, loading, list, onRefresh, onCheck,
   } = useListScreen({ listId });
 
   useLayoutEffect(() => {
     navigation.dangerouslyGetParent().setOptions({
       headerRight: () => (
-        <NewButton onPress={() => navigation.navigate('NewParticipant', { listId })}>
+        <NewButton onPress={onPressAddParticipant}>
           <AddUser />
         </NewButton>
       ),
@@ -56,18 +57,19 @@ const ListScreen = ({ route, navigation }) => {
       // }}
       itemName={item.name}
       itemQtd={item.quantity}
+      checked={item.checked}
+      onCheck={() => onCheck({ id: item._id })}
     />
   );
 
   return (
     <MainContainer>
       <List
-        contentContainerStyle={
-          !list.length && {
-            flex: 1,
-            justifyContent: 'center',
-          }
-        }
+        contentContainerStyle={{
+          // flex: 1,
+          // justifyContent: 'center',
+          paddingBottom: normalize(70),
+        }}
         data={list}
         renderItem={renderItem}
         refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}
@@ -75,7 +77,11 @@ const ListScreen = ({ route, navigation }) => {
         // onEndReached={list.length > 14 && !loading && (() => loadPage())}
         onEndReachedThreshold={0.1}
         ListFooterComponent={list.length > 0 && loading && <Loader />}
+        keyExtractor={(item) => item._id}
       />
+      <JumboContainer>
+        <JumboButton highlight label="Adicionar item" onPress={onPressNewItem} />
+      </JumboContainer>
     </MainContainer>
   );
 };

@@ -86,6 +86,16 @@ const ListStackScreen = () => {
           headerShown: false,
         }}
       />
+      <ListStack.Screen
+        name="AddItemModal"
+        component={Screens.AddItemModal}
+        options={{
+          ...fadeFromBottom(),
+          gestureEnabled: false,
+          gestureDirection: 'vertical',
+          headerShown: false,
+        }}
+      />
     </ListStack.Navigator>
   );
 };

@@ -29,3 +29,11 @@ export const Loader = styled.ActivityIndicator.attrs(({ theme }) => ({
 }))`
   padding: 24px;
 `;
+
+export const JumboContainer = styled.View`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: ${normalize(15)}px ${normalize(10)}px;
+`;
