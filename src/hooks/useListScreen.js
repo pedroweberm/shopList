@@ -47,13 +47,17 @@ const useListScreen = ({ listId }) => {
     },
   });
 
-  const { data: subscriptionData } = useSubscription(ITEM_ADDED_SUBSCRIPTION, { variables: { listId, token } });
-
-  useEffect(() => {
-    if (subscriptionData) {
-      setList([...list, subscriptionData.LIST_ITEM_ADDED]);
+  const onSubscriptionData = ({ subscriptionData }) => {
+    if (subscriptionData?.data) {
+      setList([...list, subscriptionData?.data?.LIST_ITEM_ADDED]);
     }
-  }, [subscriptionData]);
+  };
+
+  const { error: subscriptionError } = useSubscription(ITEM_ADDED_SUBSCRIPTION, {
+    variables: { listId, token },
+    onSubscriptionData,
+    shouldResubscribe: true,
+  });
 
   useEffect(() => {
     if (data) {
