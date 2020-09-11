@@ -1,5 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text } from 'react-native';
+
+import { API_AWS_HOST } from 'react-native-dotenv';
 
 import { JumboButton } from '~/components';
 
