@@ -57,7 +57,7 @@ const SignIn = ({ navigation }) => {
         dispatch(setAuthData({ token: data.login.token }));
       } else {
         navigation.navigate('ModalAuthSuccess', {
-          message: error.message,
+          message: JSON.stringify(error),
           buttonLabel: 'OK',
           onPress: () => {},
         });
